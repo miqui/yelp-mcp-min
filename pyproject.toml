@@ -1,0 +1,42 @@
+[project]
+name = "yelp-mcp-min"
+version = "0.1.0"
+description = "Minimal MCP server for the Yelp Fusion API"
+requires-python = ">=3.11"
+dependencies = [
+    "fastmcp>=2.3.4",
+    "httpx>=0.27.0",
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.3.0",
+    "structlog>=24.1.0",
+    "tenacity>=8.3.0",
+]
+
+[project.scripts]
+yelp-mcp = "server.main:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.2.0",
+    "pytest-asyncio>=0.23.0",
+    "respx>=0.21.0",
+    "mypy>=1.10.0",
+    "ruff>=0.4.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "PLC"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
